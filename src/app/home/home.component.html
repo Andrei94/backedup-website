@@ -1,0 +1,80 @@
+<router-outlet></router-outlet>
+<ul ngbNav #nav="ngbNav" [activeId]="2" class="navbar bg-primary justify-content-center">
+  <li [ngbNavItem]="1">
+    <img src="../../assets/backedup-icon.png" alt="icon" title="Backedup"/>
+  </li>
+  <li [ngbNavItem]="1">
+    <a ngbNavLink class="text-light">Features</a>
+    <ng-template ngbNavContent>
+      <p></p>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink class="text-light">Pricing</a>
+    <ng-template ngbNavContent>
+      <p></p>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3" class="nav-item text-light">Log in</li>
+</ul>
+<div class="container">
+  <ngb-carousel [pauseOnHover]="true" [wrap]="true" [showNavigationArrows]="true">
+    <ng-template ngbSlide>
+      <div>
+        <img [src]="slides[0]" alt="Your one place to keep everything protected">
+      </div>
+      <div class="carousel-caption">
+        <h3>Your one place to keep everything protected</h3>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div>
+        <img [src]="slides[1]" alt="Network storage">
+      </div>
+      <div class="carousel-caption">
+        <h3>Network storage</h3>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+  <section class="row pricing py-5">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-muted text-uppercase text-center">Basic</h5>
+          <h6 class="card-price text-center">$9.99<span class="period">/month</span></h6>
+          <hr>
+          <ul>
+            <li><strong>250GB Storage as a local drive</strong></li>
+          </ul>
+          <a href="#" class="btn btn-block btn-primary text-uppercase">Subscribe</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
+          <h6 class="card-price text-center">$14.99<span class="period">/month</span></h6>
+          <hr>
+          <ul>
+            <li><strong>500GB Storage as a local drive</strong></li>
+          </ul>
+          <a href="#" class="btn btn-block btn-primary text-uppercase">Subscribe</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-muted text-uppercase text-center">Master</h5>
+          <h6 class="card-price text-center">$24.99<span class="period">/month</span></h6>
+          <hr>
+          <ul>
+            <li><strong>1TB Storage as a local drive</strong></li>
+          </ul>
+          <a href="#" class="btn btn-block btn-primary text-uppercase">Subscribe</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
