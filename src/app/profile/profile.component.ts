@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {Auth} from 'aws-amplify';
+import {AmplifyService} from 'aws-amplify-angular';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -7,13 +10,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() {
+  constructor(private amplifyService: AmplifyService, private router: Router) {
   }
 
   ngOnInit() {
+    this.amplifyService.authStateChange$.subscribe(authState => {
+      if (authState.state === 'signIn_failure') {
+        authState.state = 'signIn';
+      } else if (authState.state === 'signedOut') {
+        this.router.navigate(['/']);
+      }
+    }, error => console.log(error));
   }
 
   signOut() {
-    console.log("User signed out")
+    Auth.signOut({ global: true }).catch(err => console.log(err));
   }
 }
