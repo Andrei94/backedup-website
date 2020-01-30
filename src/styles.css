@@ -1,3 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import '~aws-amplify-angular/Theme.css';
+@import '~aws-amplify-angular/theme.css';
+
+:root {
+  --color-primary: var(--color-blue);
+  --color-primary-highlight: var(--light-blue)
+}
+
+.amplify-form-button {
+  width: 180px;
+}

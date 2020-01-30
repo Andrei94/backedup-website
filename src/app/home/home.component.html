@@ -15,7 +15,9 @@
       <p></p>
     </ng-template>
   </li>
-  <li [ngbNavItem]="3" class="nav-item text-light">Log in</li>
+  <li [ngbNavItem]="3" class="nav-item text-light" >
+    <a ngbNavLink routerLink="/auth" class="text-light">Log in</a>
+  </li>
 </ul>
 <div class="container">
   <ngb-carousel [pauseOnHover]="true" [wrap]="true" [showNavigationArrows]="true">
@@ -78,4 +80,3 @@
     </div>
   </section>
 </div>
-<amplify-authenticator></amplify-authenticator>

@@ -8,12 +8,14 @@ import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './home/home.component';
 import {AmplifyAngularModule, AmplifyModules, AmplifyService} from 'aws-amplify-angular';
 import {Auth} from 'aws-amplify';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
