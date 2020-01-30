@@ -1,29 +1,31 @@
 import {Component, OnInit} from '@angular/core';
-import {Auth} from 'aws-amplify';
-import {AmplifyService} from 'aws-amplify-angular';
 import {Router} from '@angular/router';
+import {AuthService} from '../authentication/auth.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
+  isLoggedIn = false;
+  user: { id: string; username: string; email: string };
 
-  constructor(private amplifyService: AmplifyService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
-  ngOnInit() {
-    this.amplifyService.authStateChange$.subscribe(authState => {
-      if (authState.state === 'signIn_failure') {
-        authState.state = 'signIn';
-      } else if (authState.state === 'signedOut') {
-        this.router.navigate(['/']);
-      }
-    }, error => console.log(error));
+  ngOnInit(): void {
+    this.authService.isLoggedIn$.subscribe(
+      isLoggedIn => (this.isLoggedIn = isLoggedIn)
+    );
+
+    this.authService.auth$.subscribe(({id, username, email}) => {
+      this.user = {id, username, email};
+    });
   }
 
   signOut() {
-    Auth.signOut({ global: true }).catch(err => console.log(err));
+    this.authService.signOut();
+    this.router.navigate(['/']);
   }
 }

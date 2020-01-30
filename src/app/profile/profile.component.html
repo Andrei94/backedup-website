@@ -1,58 +1,56 @@
 <router-outlet></router-outlet>
 <div class="container">
-  <button class="btn btn-danger float-right" (click)="signOut()">Sign out</button>
-  <div class="container">
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-        Dropdown button
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+  <div class="dropdown float-right">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+      Welcome {{user.username}}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <div class="dropdown-divider"></div>
+      <button class="dropdown-item" (click)="signOut()">Sign Out</button>
+    </div>
+  </div>
+  <section class="row pricing py-5">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-muted text-uppercase text-center">Basic</h5>
+          <h6 class="card-price text-center">$9.99<span class="period">/month</span></h6>
+          <hr>
+          <ul>
+            <li><strong>250GB Storage as a local drive</strong></li>
+          </ul>
+          <a href="#" class="btn btn-block btn-primary text-uppercase">Subscribe</a>
+        </div>
       </div>
     </div>
-    <section class="row pricing py-5">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">Basic</h5>
-            <h6 class="card-price text-center">$9.99<span class="period">/month</span></h6>
-            <hr>
-            <ul>
-              <li><strong>250GB Storage as a local drive</strong></li>
-            </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Subscribe</a>
-          </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
+          <h6 class="card-price text-center">$14.99<span class="period">/month</span></h6>
+          <hr>
+          <ul>
+            <li><strong>500GB Storage as a local drive</strong></li>
+          </ul>
+          <a href="#" class="btn btn-block btn-primary text-uppercase">Subscribe</a>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
-            <h6 class="card-price text-center">$14.99<span class="period">/month</span></h6>
-            <hr>
-            <ul>
-              <li><strong>500GB Storage as a local drive</strong></li>
-            </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Subscribe</a>
-          </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-muted text-uppercase text-center">Master</h5>
+          <h6 class="card-price text-center">$24.99<span class="period">/month</span></h6>
+          <hr>
+          <ul>
+            <li><strong>1TB Storage as a local drive</strong></li>
+          </ul>
+          <a href="#" class="btn btn-block btn-primary text-uppercase">Subscribe</a>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">Master</h5>
-            <h6 class="card-price text-center">$24.99<span class="period">/month</span></h6>
-            <hr>
-            <ul>
-              <li><strong>1TB Storage as a local drive</strong></li>
-            </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Subscribe</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </div>
