@@ -55,3 +55,9 @@
     opacity: 1;
   }
 }
+
+::ng-deep .progress-bar {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}

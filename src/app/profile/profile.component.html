@@ -6,13 +6,17 @@
       Welcome {{user.username}}
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Referrals</a>
       <div class="dropdown-divider"></div>
       <button class="dropdown-item" (click)="signOut()">Sign Out</button>
     </div>
   </div>
   <section class="row pricing py-5">
+    <ngb-progressbar class="col-md-12" height="30px" [value]="usedSpace" [type]="progressBarType" [max]="totalSpace">
+<!--      <small class="justify-content-center d-flex position-absolute w-100">60% complete</small>-->
+      <span class="justify-content-center d-flex position-absolute w-100 text-light" [class.text-light]="filledOverText()">{{usedSpace}}GB / {{totalSpace}}GB</span>
+    </ngb-progressbar>
+    <div></div>
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
