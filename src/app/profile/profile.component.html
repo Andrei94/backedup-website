@@ -10,10 +10,10 @@
 </div>
 <div class="container">
   <section class="row pricing py-5">
-    <ngb-progressbar class="col-md-12 mt-1" height="30px" [value]="usedSpace" [type]="progressBarType"
-                     [max]="totalSpace">
+    <ngb-progressbar class="col-md-12 mt-1" height="30px" [value]="userSpace.usedSpace" [type]="progressBarType"
+                     [max]="userSpace.totalSpace">
       <span class="justify-content-center d-flex position-absolute w-100"
-            [class.text-light]="filledOverText()">{{usedSpace}}GB / {{totalSpace}}GB</span>
+            [class.text-light]="filledOverText()">{{userSpace.usedSpace}}GB / {{userSpace.totalSpace}}GB</span>
     </ngb-progressbar>
     <div class="col-md-4 mt-lg-5">
       <div class="card">

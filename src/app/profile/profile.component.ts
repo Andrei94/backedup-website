@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../authentication/auth.service';
 import {Referral} from '../referral';
+import {UserSpace, UserSpaceService} from './user-space.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,14 +13,13 @@ export class ProfileComponent implements OnInit {
   isLoggedIn = false;
   user: { id: string; username: string; email: string };
   progressBarType: string;
-  usedSpace: number;
-  totalSpace: number;
   referrals: Referral[] = [
     {username: 'Joe', date: new Date().getTime(), bonus: 2},
     {username: 'Black', date: new Date().getTime(), bonus: 2}
   ];
+  userSpace: UserSpace = {usedSpace: 0, totalSpace: 0};
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private userSpaceService: UserSpaceService) {
   }
 
   ngOnInit(): void {
@@ -31,17 +31,20 @@ export class ProfileComponent implements OnInit {
       this.user = {id, username, email};
     });
 
-    const spaceForUser = this.getSpaceForUser();
-    this.usedSpace = spaceForUser.usedSpace;
-    this.totalSpace = spaceForUser.totalSpace;
-    const percentOfUsedSpace = spaceForUser.usedSpace / spaceForUser.totalSpace;
-    if (percentOfUsedSpace <= 0.5) {
-      this.progressBarType = 'success';
-    } else if (percentOfUsedSpace > 0.5 && percentOfUsedSpace <= 0.8) {
-      this.progressBarType = 'warning';
-    } else {
-      this.progressBarType = 'danger';
-    }
+    this.userSpaceService.getSpace(this.user.username).subscribe(userSpace => {
+      this.userSpace = userSpace;
+      const percentOfUsedSpace = userSpace.usedSpace / userSpace.totalSpace;
+      if (percentOfUsedSpace <= 0.5) {
+        this.progressBarType = 'success';
+      } else if (percentOfUsedSpace > 0.5 && percentOfUsedSpace <= 0.8) {
+        this.progressBarType = 'warning';
+      } else {
+        this.progressBarType = 'danger';
+      }
+    }, error => {
+      console.log(error);
+      this.userSpace = {usedSpace: 0, totalSpace: 0};
+    });
   }
 
   signOut() {
@@ -49,11 +52,7 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  getSpaceForUser() {
-    return {usedSpace: 50, totalSpace: 100};
-  }
-
   filledOverText(): boolean {
-    return this.usedSpace / this.totalSpace >= 0.5;
+    return this.userSpace.usedSpace / this.userSpace.totalSpace >= 0.5;
   }
 }

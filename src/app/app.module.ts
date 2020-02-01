@@ -8,8 +8,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './home/home.component';
 import {AmplifyAngularModule, AmplifyModules, AmplifyService} from 'aws-amplify-angular';
 import {Auth} from 'aws-amplify';
-import { AuthenticationComponent } from './authentication/authentication.component';
-import { TotalBonusPipe } from './profile/total-bonus.pipe';
+import {AuthenticationComponent} from './authentication/authentication.component';
+import {TotalBonusPipe} from './profile/total-bonus.pipe';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,11 +24,12 @@ import { TotalBonusPipe } from './profile/total-bonus.pipe';
     BrowserModule,
     NgbModule,
     AppRoutingModule,
-    AmplifyAngularModule
+    AmplifyAngularModule,
+    HttpClientModule
   ],
   providers: [{
     provide: AmplifyService,
-    useFactory:  () => {
+    useFactory: () => {
       return AmplifyModules({
         Auth
       });
@@ -35,4 +37,5 @@ import { TotalBonusPipe } from './profile/total-bonus.pipe';
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
