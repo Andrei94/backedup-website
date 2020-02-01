@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../authentication/auth.service';
+import {Referral} from '../referral';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,10 @@ export class ProfileComponent implements OnInit {
   progressBarType: string;
   usedSpace: number;
   totalSpace: number;
+  referrals: Referral[] = [
+    {username: 'Joe', date: new Date().getTime(), bonus: 2},
+    {username: 'Black', date: new Date().getTime(), bonus: 2}
+  ];
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -26,16 +31,17 @@ export class ProfileComponent implements OnInit {
       this.user = {id, username, email};
     });
 
-    let spaceForUser = this.getSpaceForUser();
+    const spaceForUser = this.getSpaceForUser();
     this.usedSpace = spaceForUser.usedSpace;
     this.totalSpace = spaceForUser.totalSpace;
-    let percentOfUsedSpace = spaceForUser.usedSpace / spaceForUser.totalSpace;
-    if(percentOfUsedSpace <= 0.5)
+    const percentOfUsedSpace = spaceForUser.usedSpace / spaceForUser.totalSpace;
+    if (percentOfUsedSpace <= 0.5) {
       this.progressBarType = 'success';
-    else if(percentOfUsedSpace > 0.5 && percentOfUsedSpace <= 0.8)
+    } else if (percentOfUsedSpace > 0.5 && percentOfUsedSpace <= 0.8) {
       this.progressBarType = 'warning';
-    else
+    } else {
       this.progressBarType = 'danger';
+    }
   }
 
   signOut() {
@@ -47,7 +53,7 @@ export class ProfileComponent implements OnInit {
     return {usedSpace: 50, totalSpace: 100};
   }
 
-  filledOverText():boolean {
-    return this.usedSpace / this.totalSpace >= 0.5
+  filledOverText(): boolean {
+    return this.usedSpace / this.totalSpace >= 0.5;
   }
 }

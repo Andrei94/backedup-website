@@ -1,23 +1,21 @@
 <router-outlet></router-outlet>
-<div class="container">
-  <div class="dropdown float-right">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-      Welcome {{user.username}}
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Referrals</a>
-      <div class="dropdown-divider"></div>
-      <button class="dropdown-item" (click)="signOut()">Sign Out</button>
-    </div>
+<div class="dropdown float-right m-3 mr-5">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+    Welcome {{user.username}}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <button class="dropdown-item" (click)="signOut()">Sign Out</button>
   </div>
+</div>
+<div class="container">
   <section class="row pricing py-5">
-    <ngb-progressbar class="col-md-12" height="30px" [value]="usedSpace" [type]="progressBarType" [max]="totalSpace">
-<!--      <small class="justify-content-center d-flex position-absolute w-100">60% complete</small>-->
-      <span class="justify-content-center d-flex position-absolute w-100 text-light" [class.text-light]="filledOverText()">{{usedSpace}}GB / {{totalSpace}}GB</span>
+    <ngb-progressbar class="col-md-12 mt-1" height="30px" [value]="usedSpace" [type]="progressBarType"
+                     [max]="totalSpace">
+      <span class="justify-content-center d-flex position-absolute w-100"
+            [class.text-light]="filledOverText()">{{usedSpace}}GB / {{totalSpace}}GB</span>
     </ngb-progressbar>
-    <div></div>
-    <div class="col-md-4">
+    <div class="col-md-4 mt-lg-5">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-muted text-uppercase text-center">Basic</h5>
@@ -30,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 mt-lg-5">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
@@ -43,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 mt-lg-5">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-muted text-uppercase text-center">Master</h5>
@@ -57,4 +55,27 @@
       </div>
     </div>
   </section>
+  <section class="row">
+    <h3 class="col-2">Referrals</h3>
+    <button class="btn btn-primary roundedButton col-2">Get link</button>
+    <table class="table table-striped mt-1 col-md-12">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">Date</th>
+        <th scope="col">Bonus</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let referral of referrals; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{referral.username}}</td>
+        <td>{{referral.date | date}}</td>
+        <td>{{referral.bonus | currency:'USD'}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+  <h2 class="float-right">Total {{referrals | totalBonus | currency:'USD'}}</h2>
 </div>

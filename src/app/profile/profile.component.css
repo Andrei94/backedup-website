@@ -61,3 +61,7 @@
   font-size: 0.8rem;
   font-weight: bold;
 }
+
+.roundedButton {
+  border-radius: 3rem;
+}

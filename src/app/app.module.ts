@@ -9,13 +9,15 @@ import {HomeComponent} from './home/home.component';
 import {AmplifyAngularModule, AmplifyModules, AmplifyService} from 'aws-amplify-angular';
 import {Auth} from 'aws-amplify';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { TotalBonusPipe } from './profile/total-bonus.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     HomeComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    TotalBonusPipe
   ],
   imports: [
     BrowserModule,
