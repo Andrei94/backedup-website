@@ -7,8 +7,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   slides = [
-    'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png',
-    'https://icatcare.org/app/uploads/2018/06/Layer-1704-1920x840.jpg'
+    'assets/thinking.png',
+    'assets/sitting.jpg'
   ];
 
   constructor() {
