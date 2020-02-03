@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../authentication/auth.service';
 import {Referral} from '../referral';
 import {UserSpace, UserSpaceService} from './user-space.service';
+import {AnalyticsService} from "../analytics.service";
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +20,7 @@ export class ProfileComponent implements OnInit {
   ];
   userSpace: UserSpace = {usedSpace: 0, totalSpace: 0};
 
-  constructor(private authService: AuthService, private router: Router, private userSpaceService: UserSpaceService) {
+  constructor(private authService: AuthService, private router: Router, private userSpaceService: UserSpaceService, private analyticsService: AnalyticsService) {
   }
 
   ngOnInit(): void {
@@ -29,6 +30,7 @@ export class ProfileComponent implements OnInit {
 
     this.authService.auth$.subscribe(({id, username, email}) => {
       this.user = {id, username, email};
+      this.analyticsService.emitEvent('pageViews', 'pageLoaded', 'profilePage', this.user.username);
     });
 
     this.userSpaceService.getSpace(this.user.username).subscribe(userSpace => {
