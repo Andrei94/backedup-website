@@ -57,4 +57,16 @@ export class ProfileComponent implements OnInit {
   filledOverText(): boolean {
     return this.userSpace.usedSpace / this.userSpace.totalSpace >= 0.5;
   }
+
+  subscribeQuarterTB() {
+    this.analyticsService.emitEvent('subscriptions', 'subscribedQuarterTB', 'subscription', this.user.username)
+  }
+
+  subscribeHalfTB() {
+    this.analyticsService.emitEvent('subscriptions', 'subscribedHalfTB', 'subscription', this.user.username)
+  }
+
+  subscribeOneTB() {
+    this.analyticsService.emitEvent('subscriptions', 'subscribedOneTB', 'subscription', this.user.username)
+  }
 }
