@@ -1,9 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ProfileComponent} from './profile.component';
-import {RouterTestingModule} from "@angular/router/testing";
-import {Router} from "@angular/router";
-import {AmplifyService} from "aws-amplify-angular";
+import {RouterTestingModule} from '@angular/router/testing';
+import {Router} from '@angular/router';
+import {AmplifyService} from 'aws-amplify-angular';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;

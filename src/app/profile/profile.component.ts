@@ -3,8 +3,8 @@ import {Router} from '@angular/router';
 import {AuthService} from '../authentication/auth.service';
 import {Referral} from '../referral';
 import {UserSpace, UserSpaceService} from './user-space.service';
-import {AnalyticsService} from "../analytics.service";
-import {Auth} from "aws-amplify";
+import {AnalyticsService} from '../analytics.service';
+import {Auth} from 'aws-amplify';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +21,10 @@ export class ProfileComponent implements OnInit {
   ];
   userSpace: UserSpace = {usedSpace: 0, totalSpace: 0};
 
-  constructor(private authService: AuthService, private router: Router, private userSpaceService: UserSpaceService, private analyticsService: AnalyticsService) {
+  constructor(private authService: AuthService,
+              private router: Router,
+              private userSpaceService: UserSpaceService,
+              private analyticsService: AnalyticsService) {
   }
 
   ngOnInit(): void {
@@ -61,17 +64,17 @@ export class ProfileComponent implements OnInit {
 
   subscribeQuarterTB() {
     this.updateTotalStorage('1');
-    this.analyticsService.emitEvent('subscriptions', 'subscribedQuarterTB', 'subscription', this.user.username)
+    this.analyticsService.emitEvent('subscriptions', 'subscribedQuarterTB', 'subscription', this.user.username);
   }
 
   subscribeHalfTB() {
     this.updateTotalStorage('2');
-    this.analyticsService.emitEvent('subscriptions', 'subscribedHalfTB', 'subscription', this.user.username)
+    this.analyticsService.emitEvent('subscriptions', 'subscribedHalfTB', 'subscription', this.user.username);
   }
 
   subscribeOneTB() {
     this.updateTotalStorage('3');
-    this.analyticsService.emitEvent('subscriptions', 'subscribedOneTB', 'subscription', this.user.username)
+    this.analyticsService.emitEvent('subscriptions', 'subscribedOneTB', 'subscription', this.user.username);
   }
 
   updateTotalStorage(value: string) {

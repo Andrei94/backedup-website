@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavigationEnd, Router} from "@angular/router";
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +12,8 @@ export class AppComponent {
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        (<any>window).ga('set', 'page', event.urlAfterRedirects);
-        (<any>window).ga('send', 'pageview');
+        (window as any).ga('set', 'page', event.urlAfterRedirects);
+        (window as any).ga('send', 'pageview');
       }
     });
   }

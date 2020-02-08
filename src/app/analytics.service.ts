@@ -1,17 +1,18 @@
 import {Injectable} from '@angular/core';
 
-declare let gtag:Function;
+declare let gtag: (action, typeOfAction, payload) => void;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnalyticsService {
-  constructor() { }
+  constructor() {
+  }
 
   public emitEvent(eventCategory: string,
                    eventAction: string,
                    eventLabel: string = null,
                    eventValue: string = null) {
-    gtag('send', 'event', { eventCategory, eventLabel, eventAction, eventValue });
+    gtag('send', 'event', {eventCategory, eventLabel, eventAction, eventValue});
   }
 }
