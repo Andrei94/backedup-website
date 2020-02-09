@@ -11,6 +11,7 @@ import {Auth} from 'aws-amplify';
 import {AuthenticationComponent} from './authentication/authentication.component';
 import {TotalBonusPipe} from './profile/total-bonus.pipe';
 import {HttpClientModule} from '@angular/common/http';
+import {PaymentComponent} from './profile/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
     ProfileComponent,
     HomeComponent,
     AuthenticationComponent,
-    TotalBonusPipe
+    TotalBonusPipe,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
