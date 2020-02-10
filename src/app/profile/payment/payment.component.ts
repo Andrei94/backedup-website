@@ -19,20 +19,23 @@ export class PaymentComponent implements OnInit {
   }
 
   ngOnInit() {
-    dropin.create({
-      authorization: 'sandbox_fwm487c2_sjp9wxhy2nnq53hk',
-      container: '#dropin-container',
-      card: {
-        cardholderName: {
-          required: true
-        }
-      },
-      cvv: {
-        required: true
-      }
-    }).then(value => this.braintree = value);
     this.planId = this.route.snapshot.paramMap.get('planId');
     this.customerId = this.route.snapshot.paramMap.get('customerId');
+    this.getClientToken(this.customerId).subscribe(token => {
+      dropin.create({
+        authorization: (token as any).token,
+        container: '#dropin-container',
+        vaultManager: true,
+        card: {
+          cardholderName: {
+            required: true
+          }
+        },
+        cvv: {
+          required: true
+        }
+      }).then(value => this.braintree = value);
+    });
   }
 
   pay() {
@@ -43,5 +46,9 @@ export class PaymentComponent implements OnInit {
         paymentNonce: payload.nonce
       }).subscribe(() => this.router.navigate(['/profile']));
     });
+  }
+
+  private getClientToken(customer: string) {
+    return this.httpClient.post('http://localhost:8083/generate-client-token', {customerId: customer});
   }
 }

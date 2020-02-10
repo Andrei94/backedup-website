@@ -1,2 +1,4 @@
-<div id="dropin-container"></div>
-<button id="submit-button" class="btn btn-primary" (click)="pay()">Pay</button>
+<div class="container">
+  <div id="dropin-container"></div>
+  <button *ngIf="braintree" id="submit-button" class="btn btn-primary btn-lg btn-block" (click)="pay()">Pay</button>
+</div>
