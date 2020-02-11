@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="container">
-  <section class="row pricing py-5">
+  <section class="row pricing py-5" *ngIf="this.customerId">
     <ngb-progressbar class="col-md-12 mt-1" height="30px" [value]="userSpace.usedSpace" [type]="progressBarType"
                      [max]="userSpace.totalSpace">
       <span class="justify-content-center d-flex position-absolute w-100"

@@ -35,7 +35,10 @@ export class ProfileComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe(
       isLoggedIn => (this.isLoggedIn = isLoggedIn)
     );
-    this.createCustomerInGateway();
+    if (!this.customerId) {
+      this.createCustomerInGateway();
+    }
+
     this.authService.auth$.subscribe(({id, username, email}) => {
       this.user = {id, username, email};
       this.analyticsService.emitEvent('pageViews', 'pageLoaded', 'profilePage', this.user.username);
