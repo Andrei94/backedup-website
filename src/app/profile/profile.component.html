@@ -19,7 +19,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-muted text-uppercase text-center">Basic</h5>
-          <h6 class="card-price text-center">$9.99<span class="period">/month</span></h6>
+          <h6 class="card-price text-center">{{9.99 | currency:'EUR'}}<span class="period">/month</span></h6>
           <hr>
           <ul>
             <li><strong>250GB Storage as a local drive</strong></li>
@@ -32,7 +32,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
-          <h6 class="card-price text-center">$14.99<span class="period">/month</span></h6>
+          <h6 class="card-price text-center">{{14.99 | currency:'EUR'}}<span class="period">/month</span></h6>
           <hr>
           <ul>
             <li><strong>500GB Storage as a local drive</strong></li>
@@ -45,7 +45,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-muted text-uppercase text-center">Master</h5>
-          <h6 class="card-price text-center">$24.99<span class="period">/month</span></h6>
+          <h6 class="card-price text-center">{{24.99 | currency:'EUR'}}<span class="period">/month</span></h6>
           <hr>
           <ul>
             <li><strong>1TB Storage as a local drive</strong></li>
@@ -72,10 +72,10 @@
         <th scope="row">{{i + 1}}</th>
         <td>{{referral.username}}</td>
         <td>{{referral.date | date}}</td>
-        <td>{{referral.bonus | currency:'USD'}}</td>
+        <td>{{referral.bonus | currency:'EUR'}}</td>
       </tr>
       </tbody>
     </table>
   </section>
-  <h2 class="float-right">Total {{referrals | totalBonus | currency:'USD'}}</h2>
+  <h2 class="float-right">Total {{referrals | totalBonus | currency:'EUR'}}</h2>
 </div>
