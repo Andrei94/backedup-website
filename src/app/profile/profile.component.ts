@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     {username: 'Black', date: new Date().getTime(), bonus: 2}
   ];
   userSpace: UserSpace = {usedSpace: 0, totalSpace: 0};
-  private customerId: string;
+  customerId: string;
 
   constructor(private authService: AuthService,
               private router: Router,
