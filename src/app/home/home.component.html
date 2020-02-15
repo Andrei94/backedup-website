@@ -15,29 +15,31 @@
       <p></p>
     </ng-template>
   </li>
-  <li [ngbNavItem]="3" class="nav-item text-light" >
+  <li [ngbNavItem]="3" class="nav-item text-light">
     <a ngbNavLink routerLink="/auth" class="text-light">Log in</a>
   </li>
 </ul>
+<br>
 <div class="container">
-  <ngb-carousel [pauseOnHover]="true" [wrap]="true" [showNavigationArrows]="true">
-    <ng-template ngbSlide>
-      <div>
-        <img [src]="slides[0]" alt="Your one place to keep everything protected">
-      </div>
-      <div class="carousel-caption">
-        <h3>Your one place to keep everything protected</h3>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div>
-        <img [src]="slides[1]" alt="Network storage">
-      </div>
-      <div class="carousel-caption">
-        <h3>Network storage</h3>
-      </div>
-    </ng-template>
-  </ngb-carousel>
+  <section class="row">
+    <h3 class="col-md-12 text-center slideFromBottomAnimation"> What brings <b class="d-block">you</b> here?</h3>
+    <div class="col-md-6">
+      <ul class="h5">
+        <li class="slideFromBottomAnimation">You have a lot of data that you want to keep safe</li>
+        <li class="slideFromBottomAnimation">You recently lost your data to some disk problem and are looking for
+          alternatives
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <ul class="h5">
+        <li class="slideFromBottomAnimation">You want more space on your computer</li>
+        <li class="slideFromBottomAnimation">You have games and want to keep them on your computer, but you want to
+          avoid buying an external disk that might break
+        </li>
+      </ul>
+    </div>
+  </section>
   <section class="row pricing py-5">
     <div class="col-md-4">
       <div class="card">
