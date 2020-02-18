@@ -7,6 +7,7 @@ import {AnalyticsService} from '../analytics.service';
 import {Auth} from 'aws-amplify';
 import {CognitoUserAttribute} from 'amazon-cognito-identity-js';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -74,7 +75,7 @@ export class ProfileComponent implements OnInit {
       .then(user =>
         Auth.userAttributes(user).then((value: CognitoUserAttribute[]) => {
           console.log(value);
-          this.httpClient.post('http://localhost:8081/create-customer', {
+          this.httpClient.post(environment.createCustomerUrl, {
             firstName: value.find(value1 => value1.getName() === 'given_name').getValue(),
             lastName: value.find(value1 => value1.getName() === 'family_name').getValue(),
             email: value.find(value1 => value1.getName() === 'email').getValue(),

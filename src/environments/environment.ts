@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  showSubscriptionUrl: 'http://localhost:8081/showSubscriptionSpace/',
+  paySubscriptionUrl: 'http://localhost:8082/pay-subscription',
+  generateClientTokenUrl: 'http://localhost:8083/generate-client-token',
+  createCustomerUrl: 'http://localhost:8084/create-customer'
 };
 
 /*

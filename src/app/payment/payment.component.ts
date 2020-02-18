@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import * as dropin from 'braintree-web-drop-in';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-payment',
@@ -40,7 +41,7 @@ export class PaymentComponent implements OnInit {
 
   pay() {
     this.braintree.requestPaymentMethod((err, payload) => {
-      this.httpClient.post('http://localhost:8082/pay-subscription', {
+      this.httpClient.post(environment.paySubscriptionUrl, {
         planId: this.planId,
         customerId: this.customerId,
         paymentNonce: payload.nonce
@@ -49,6 +50,6 @@ export class PaymentComponent implements OnInit {
   }
 
   private getClientToken(customer: string) {
-    return this.httpClient.post('http://localhost:8083/generate-client-token', {customerId: customer});
+    return this.httpClient.post(environment.generateClientTokenUrl, {customerId: customer});
   }
 }
