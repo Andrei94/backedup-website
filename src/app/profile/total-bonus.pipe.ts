@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Referral} from '../../referral';
+import {Referral} from '../referral';
 
 @Pipe({
   name: 'totalBonus'

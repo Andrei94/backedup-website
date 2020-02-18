@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../authentication/auth.service';
-import {Referral} from '../../referral';
+import {Referral} from '../referral';
 import {UserSpace, UserSpaceService} from './user-space.service';
-import {AnalyticsService} from '../../analytics.service';
+import {AnalyticsService} from '../analytics.service';
 import {Auth} from 'aws-amplify';
 import {CognitoUserAttribute} from 'amazon-cognito-identity-js';
 import {HttpClient} from '@angular/common/http';
