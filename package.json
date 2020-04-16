@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "serve-prod": "ng build --prod && gzipper --verbose ./dist && ng serve -c production",
+    "serve-aws-test": "ng build --prod && gzipper --verbose ./dist && ng serve -c awstest",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
