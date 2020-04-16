@@ -34,6 +34,9 @@ export class PaymentComponent implements OnInit {
         },
         cvv: {
           required: true
+        },
+        postalCode: {
+          required: true
         }
       }).then(value => this.braintree = value);
     });
