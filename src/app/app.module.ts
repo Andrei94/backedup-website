@@ -9,7 +9,6 @@ import {HomeComponent} from './home/home.component';
 import {AmplifyAngularModule, AmplifyModules, AmplifyService} from 'aws-amplify-angular';
 import {Auth} from 'aws-amplify';
 import {AuthenticationComponent} from './authentication/authentication.component';
-import {TotalBonusPipe} from './profile/total-bonus.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import {PaymentComponent} from './payment/payment.component';
 
@@ -19,7 +18,6 @@ import {PaymentComponent} from './payment/payment.component';
     ProfileComponent,
     HomeComponent,
     AuthenticationComponent,
-    TotalBonusPipe,
     PaymentComponent
   ],
   imports: [

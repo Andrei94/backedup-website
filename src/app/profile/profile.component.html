@@ -10,11 +10,6 @@
 </div>
 <div class="container">
   <section class="row pricing py-5" *ngIf="this.customerId">
-    <ngb-progressbar class="col-md-12 mt-1" height="30px" [value]="userSpace.usedSpace" [type]="progressBarType"
-                     [max]="userSpace.totalSpace">
-      <span class="justify-content-center d-flex position-absolute w-100"
-            [class.text-light]="filledOverText()">{{userSpace.usedSpace}}GB / {{userSpace.totalSpace}}GB</span>
-    </ngb-progressbar>
     <div class="col-md-4 mt-lg-5">
       <div class="card">
         <div class="card-body">
@@ -55,27 +50,4 @@
       </div>
     </div>
   </section>
-  <section class="row">
-    <h3 class="col-2">Referrals</h3>
-    <button class="btn btn-primary roundedButton col-2">Get link</button>
-    <table class="table table-striped mt-1 col-md-12">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Username</th>
-        <th scope="col">Date</th>
-        <th scope="col">Bonus</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let referral of referrals; let i = index">
-        <th scope="row">{{i + 1}}</th>
-        <td>{{referral.username}}</td>
-        <td>{{referral.date | date}}</td>
-        <td>{{referral.bonus | currency:'EUR'}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </section>
-  <h2 class="float-right">Total {{referrals | totalBonus | currency:'EUR'}}</h2>
 </div>
