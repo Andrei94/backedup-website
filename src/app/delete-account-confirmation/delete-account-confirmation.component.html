@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">Account deletion</h4>
+  <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p><strong>Are you sure you want to close the account <span class="text-primary">{{username}}</span> profile?</strong>
+  </p>
+  <div>All information associated to this user account will be <b>immediately and permanently deleted</b>.This includes:
+    <ul>
+      <li>all the versions of the data you backed up</li>
+      <li>your active subscription</li>
+      <li>the drive mounted to your computer</li>
+    </ul>
+  </div>
+  <strong class="text-danger">This operation can not be undone.</strong>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-block btn-danger" (click)="delete()">
+    <span *ngIf="deleteInProgress" class="spinner-border spinner-border-sm text-info" role="status" aria-hidden="true"></span>
+    OK
+  </button>
+  <button type="button" class="btn btn-block btn-outline-secondary" (click)="modal.dismiss('cancel click')">
+    Cancel
+  </button>
+</div>

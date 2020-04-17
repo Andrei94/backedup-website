@@ -11,6 +11,7 @@ import {Auth} from 'aws-amplify';
 import {AuthenticationComponent} from './authentication/authentication.component';
 import {HttpClientModule} from '@angular/common/http';
 import {PaymentComponent} from './payment/payment.component';
+import { DeleteAccountConfirmationComponent } from './delete-account-confirmation/delete-account-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {PaymentComponent} from './payment/payment.component';
     ProfileComponent,
     HomeComponent,
     AuthenticationComponent,
-    PaymentComponent
+    PaymentComponent,
+    DeleteAccountConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import {PaymentComponent} from './payment/payment.component';
       });
     }
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DeleteAccountConfirmationComponent]
 })
 export class AppModule {
 }

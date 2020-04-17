@@ -6,6 +6,8 @@ import {Auth} from 'aws-amplify';
 import {CognitoUserAttribute} from 'amazon-cognito-identity-js';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {DeleteAccountConfirmationComponent} from '../delete-account-confirmation/delete-account-confirmation.component';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +22,8 @@ export class ProfileComponent implements OnInit {
   constructor(private authService: AuthService,
               private router: Router,
               private analyticsService: AnalyticsService,
-              private httpClient: HttpClient) {
+              private httpClient: HttpClient,
+              private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -76,5 +79,11 @@ export class ProfileComponent implements OnInit {
 
   updateTotalStorage(value: string) {
     Auth.currentAuthenticatedUser().then(user => Auth.updateUserAttributes(user, {'custom:totalStorage': value}));
+  }
+
+  deleteAccount() {
+    const modal = this.modalService.open(DeleteAccountConfirmationComponent);
+    modal.componentInstance.customerId = this.customerId;
+    modal.componentInstance.username = this.user.username;
   }
 }
