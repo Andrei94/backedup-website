@@ -14,6 +14,7 @@ import {PaymentComponent} from './payment/payment.component';
 import {DeleteAccountConfirmationComponent} from './delete-account-confirmation/delete-account-confirmation.component';
 import {ContactUsComponent} from './contact-us/contact-us.component';
 import {FormsModule} from '@angular/forms';
+import {RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings} from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import {FormsModule} from '@angular/forms';
     AppRoutingModule,
     AmplifyAngularModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
   ],
   providers: [{
     provide: AmplifyService,
@@ -40,6 +43,11 @@ import {FormsModule} from '@angular/forms';
         Auth
       });
     }
+  }, {
+    provide: RECAPTCHA_SETTINGS,
+    useValue: {
+      siteKey: '6LcUausUAAAAAEjFXFoqR0qnp9UvMiUoIsLGTra2',
+    } as RecaptchaSettings,
   }],
   bootstrap: [AppComponent],
   entryComponents: [DeleteAccountConfirmationComponent]
