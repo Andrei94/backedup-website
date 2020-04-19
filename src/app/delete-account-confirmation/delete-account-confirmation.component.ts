@@ -17,7 +17,7 @@ export class DeleteAccountConfirmationComponent implements OnInit {
 
   deleteInProgress: boolean;
 
-  constructor(private modal: NgbActiveModal,
+  constructor(public modal: NgbActiveModal,
               private httpClient: HttpClient,
               private router: Router) {
   }
