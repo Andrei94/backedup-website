@@ -3,4 +3,5 @@ export class ContactUs {
   email: string;
   subject: string;
   message: string;
+  captcha: string;
 }

@@ -62,12 +62,10 @@
         <p *ngIf="contactFormMessage.errors.required">Message is required</p>
       </div>
     </div>
-    <div class="form-group">
-      <re-captcha></re-captcha>
-    </div>
+    <re-captcha [(ngModel)]="model.captcha" name="captcha" required></re-captcha>
 
     <button class="btn btn-primary btn-block" type="submit">
-      <span *ngIf="sendingInProgress" class="spinner-border spinner-border-sm text-info" role="status"
+      <span *ngIf="sendingInProgress" class="spinner-border spinner-border-sm text-light" role="status"
             aria-hidden="true"></span>
       Send
     </button>
