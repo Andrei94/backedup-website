@@ -30,7 +30,13 @@ export class ContactUsComponent implements OnInit {
         email: this.model.email,
         subject: this.model.subject,
         message: this.model.message
-      }).subscribe(() => this.success(), () => this.failure());
+      }).subscribe((value: any) => {
+        if (value.errorMessage) {
+          this.failure();
+        } else {
+          this.success();
+        }
+      }, () => this.failure());
     }
   }
 
