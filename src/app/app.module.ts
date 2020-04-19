@@ -11,7 +11,9 @@ import {Auth} from 'aws-amplify';
 import {AuthenticationComponent} from './authentication/authentication.component';
 import {HttpClientModule} from '@angular/common/http';
 import {PaymentComponent} from './payment/payment.component';
-import { DeleteAccountConfirmationComponent } from './delete-account-confirmation/delete-account-confirmation.component';
+import {DeleteAccountConfirmationComponent} from './delete-account-confirmation/delete-account-confirmation.component';
+import {ContactUsComponent} from './contact-us/contact-us.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,14 +22,16 @@ import { DeleteAccountConfirmationComponent } from './delete-account-confirmatio
     HomeComponent,
     AuthenticationComponent,
     PaymentComponent,
-    DeleteAccountConfirmationComponent
+    DeleteAccountConfirmationComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     AppRoutingModule,
     AmplifyAngularModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [{
     provide: AmplifyService,

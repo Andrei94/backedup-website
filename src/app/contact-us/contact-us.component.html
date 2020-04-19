@@ -1,0 +1,71 @@
+<router-outlet></router-outlet>
+<ul ngbNav class="navbar bg-primary justify-content-center fixed-top">
+  <li [ngbNavItem]="1">
+    <img src="../../assets/backedup-icon.png" alt="icon" title="Backedup"/>
+  </li>
+  <li [ngbNavItem]="2" class="nav-item text-light">
+    <a ngbNavLink routerLink="/auth" class="text-light">Log in / Sign Up</a>
+  </li>
+  <li [ngbNavItem]="3" class="nav-item text-light">
+    <a ngbNavLink routerLink="/contact" class="text-light">Contact Us</a>
+  </li>
+</ul>
+<br>
+<div class="container" style="margin-top: 56px">
+  <div *ngIf="formSubmitted && contactForm.valid" class="text-center border border-light">
+    <div *ngIf="messageSuccessfullySent" class="alert alert-success font-weight-bold" role="alert">
+      Message successfully sent
+    </div>
+    <div *ngIf="!messageSuccessfullySent" class="alert alert-danger font-weight-bold" role="alert">
+      Failed to send message. Please try again
+    </div>
+  </div>
+  <form #contactForm="ngForm" class="text-center border border-light p-5" (ngSubmit)="onSubmit(contactForm)">
+    <p class="h4 mb-4">Contact us</p>
+
+    <label for="contactFormName"></label>
+    <input type="text" id="contactFormName" name="contactFormName" class="form-control mb-4" placeholder="Name"
+           [(ngModel)]="model.name" required #contactFormName="ngModel"
+           [ngClass]="{ 'is-invalid': contactForm.submitted && contactFormName.invalid }">
+    <div class="invalid-feedback" *ngIf="contactForm.submitted && contactFormName.invalid">
+      <p *ngIf="contactFormName.errors.required">Name is required</p>
+    </div>
+
+    <label for="contactFormEmail"></label>
+    <input type="email" id="contactFormEmail" name="contactFormEmail" class="form-control mb-4" placeholder="E-mail"
+           [(ngModel)]="model.email" required #contactFormEmail="ngModel"
+           [ngClass]="{ 'is-invalid': contactForm.submitted && contactFormEmail.invalid }">
+    <div *ngIf="contactForm.submitted && contactFormEmail.invalid" class="invalid-feedback">
+      <div *ngIf="contactFormEmail.errors.required">Email is required</div>
+      <div *ngIf="contactFormEmail.errors.email">Must be a valid email address</div>
+    </div>
+
+    <label for="contactFormSubject">Subject</label>
+    <select id="contactFormSubject" class="browser-default custom-select mb-4" name="contactFormSubject"
+            [(ngModel)]="model.subject" required #contactFormSubject="ngModel"
+            [ngClass]="{ 'is-invalid': contactForm.submitted && contactFormSubject.invalid }">
+      <option *ngFor="let category of categories" [value]="category">
+        {{category}}
+      </option>
+    </select>
+    <div class="invalid-feedback" *ngIf="contactForm.submitted && contactFormSubject.invalid">
+      <p *ngIf="contactFormSubject.errors.required">Subject is required</p>
+    </div>
+
+    <div class="form-group">
+      <label for="contactFormMessage"></label>
+      <textarea id="contactFormMessage" class="form-control rounded-0" rows="5" placeholder="Message"
+                name="contactFormMessage"
+                [(ngModel)]="model.message" required #contactFormMessage="ngModel"
+                [ngClass]="{ 'is-invalid': contactForm.submitted && contactFormMessage.invalid }"></textarea>
+      <div class="invalid-feedback" *ngIf="contactForm.submitted && contactFormMessage.invalid">
+        <p *ngIf="contactFormMessage.errors.required">Message is required</p>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">
+      <span *ngIf="sendingInProgress" class="spinner-border spinner-border-sm text-info" role="status"
+            aria-hidden="true"></span>
+      Send
+    </button>
+  </form>
+</div>
