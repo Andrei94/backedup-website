@@ -62,7 +62,12 @@
         <p *ngIf="contactFormMessage.errors.required">Message is required</p>
       </div>
     </div>
-    <re-captcha [(ngModel)]="model.captcha" name="captcha" required></re-captcha>
+
+    <re-captcha [(ngModel)]="model.captcha" #captcha="ngModel" name="captcha" required class="mb-2"
+                [ngClass]="{ 'is-invalid': contactForm.submitted && captcha.invalid }"></re-captcha>
+    <div *ngIf="contactForm.submitted && captcha.invalid" class="invalid-feedback mb-2">
+      <div *ngIf="captcha.errors.required">Captcha is required</div>
+    </div>
 
     <button class="btn btn-primary btn-block" type="submit">
       <span *ngIf="sendingInProgress" class="spinner-border spinner-border-sm text-light" role="status"

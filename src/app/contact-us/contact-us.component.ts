@@ -23,7 +23,7 @@ export class ContactUsComponent implements OnInit {
   }
 
   onSubmit(contactForm: NgForm): void {
-    if (contactForm.valid && this.model.captcha) {
+    if (contactForm.valid) {
       this.sendingInProgress = true;
       this.httpClient.post(environment.contactUsEmail, {
         name: this.model.name,
