@@ -40,7 +40,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(subscriptionForm: NgForm): void {
-    console.log(subscriptionForm);
     if (subscriptionForm.valid) {
       this.sendingInProgress = true;
       this.httpClient.post(environment.notifySubscription, {
