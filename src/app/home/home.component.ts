@@ -10,18 +10,22 @@ import {environment} from '../../environments/environment';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  constructor(private httpClient: HttpClient) {
+  }
   model: NotifySubscription = new NotifySubscription();
   sendingInProgress: boolean;
   formSubmitted: boolean;
   messageSuccessfullySent: boolean;
 
-  constructor(private httpClient: HttpClient) {
+  private static random(): string {
+    return new Date().getTime() + '' + Math.floor(Math.random() * 10000000);
   }
 
   ngOnInit() {
-    let acc = new Map();
+    const acc = new Map();
     for (let i = 0; i < 100000; i++) {
-      let message = this.random();
+      const message = HomeComponent.random();
       if (acc.has(message.substr(message.length - 7))) {
         acc.set(message.substr(message.length - 7), acc.get(message.substr(message.length - 7)) + 1);
       } else {
@@ -30,13 +34,9 @@ export class HomeComponent implements OnInit {
     }
     acc.forEach((value, key) => {
       if (acc.get(key) > 1) {
-        console.log({key, value})
+        console.log({key, value});
       }
     });
-  }
-
-  private random(): string {
-    return new Date().getTime() + '' + Math.floor(Math.random() * 10000000)
   }
 
   onSubmit(subscriptionForm: NgForm): void {
