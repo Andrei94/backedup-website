@@ -3,9 +3,6 @@
   <li [ngbNavItem]="1">
     <img src="../../assets/backedup-icon.png" alt="icon" title="Backedup"/>
   </li>
-  <li [ngbNavItem]="2" class="nav-item text-light">
-    <a ngbNavLink routerLink="/auth" class="text-light">Log in / Sign Up</a>
-  </li>
   <li [ngbNavItem]="3" class="nav-item text-light">
     <a ngbNavLink routerLink="/contact" class="text-light">Contact Us</a>
   </li>
@@ -32,7 +29,7 @@
     </div>
 
     <label for="contactFormEmail"></label>
-    <input type="email" id="contactFormEmail" name="contactFormEmail" class="form-control mb-4" placeholder="E-mail"
+    <input type="email" id="contactFormEmail" name="contactFormEmail" class="form-control mb-4" placeholder="Email"
            [(ngModel)]="model.email" required #contactFormEmail="ngModel"
            [ngClass]="{ 'is-invalid': contactForm.submitted && contactFormEmail.invalid }">
     <div *ngIf="contactForm.submitted && contactFormEmail.invalid" class="invalid-feedback">
