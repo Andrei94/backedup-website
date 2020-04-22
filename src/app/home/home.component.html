@@ -104,42 +104,64 @@
       <div class="h5 text-center"><b>Imagine managing all this with your own drives</b></div>
     </div>
   </section>
-  <section class="row pricing py-5">
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title text-muted text-uppercase text-center">Basic</h5>
-          <h6 class="card-price text-center">{{9.99 | currency:'EUR'}}<span class="period">/month</span></h6>
-          <hr>
-          <ul>
-            <li><strong>250GB Storage as a local drive</strong></li>
-          </ul>
-        </div>
+  <section class="bg-light">
+    <section>
+      <div>
+        <h3 class="text-center"><b>Subscribe for notifications about the status of the application</b></h3>
+        <h4 class="text-center"><b>Subscribe now and get a promo code for a 50% discount!!</b></h4>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
-          <h6 class="card-price text-center">{{14.99 | currency:'EUR'}}<span class="period">/month</span></h6>
-          <hr>
-          <ul>
-            <li><strong>500GB Storage as a local drive</strong></li>
-          </ul>
+    </section>
+    <section class="row mb-5">
+      <div class="col-md-4"></div>
+      <form #subscriptionForm="ngForm" class="text-center border border-light col-md-4"
+            (ngSubmit)="onSubmit(subscriptionForm)">
+        <div *ngIf="formSubmitted && subscriptionForm.valid" class="text-center border border-light">
+          <div *ngIf="messageSuccessfullySent" class="text-success font-weight-bold">
+            Subscribed! Thank you!
+          </div>
+          <div *ngIf="!messageSuccessfullySent" class="text-danger font-weight-bold">
+            Failed to subscribe! Please try again
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title text-muted text-uppercase text-center">Master</h5>
-          <h6 class="card-price text-center">{{24.99 | currency:'EUR'}}<span class="period">/month</span></h6>
-          <hr>
-          <ul>
-            <li><strong>1TB Storage as a local drive</strong></li>
-          </ul>
+
+        <label for="subscriptionEmail"></label>
+        <input type="email" id="subscriptionEmail" name="subscriptionEmail" class="form-control m-2 text-center"
+               placeholder="Email"
+               [(ngModel)]="model.email" required #subscriptionEmail="ngModel"
+               [ngClass]="{ 'is-invalid': subscriptionForm.submitted && subscriptionEmail.invalid }">
+        <div *ngIf="subscriptionForm.submitted && subscriptionEmail.invalid" class="invalid-feedback mb-2">
+          <p *ngIf="subscriptionEmail.errors.required">Email is required</p>
+          <p *ngIf="subscriptionEmail.errors.email">Must be a valid email address</p>
         </div>
-      </div>
-    </div>
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" id="privacyAcceptance" name="privacyAcceptance"
+                 class="custom-control-input form-check-input"
+                 [(ngModel)]="model.privacyAccepted" required #privacyAcceptance="ngModel"
+                 [ngClass]="{ 'is-invalid': subscriptionForm.submitted && privacyAcceptance.invalid }">
+          <label class="custom-control-label form-check-label" for="privacyAcceptance">
+            I accept the
+            <a href="../../assets/privacyPolicy.html" rel="nofollow external" target="_blank">Privacy Policy</a>
+          </label>
+        </div>
+        <div *ngIf="subscriptionForm.submitted && privacyAcceptance.invalid" class="invalid-feedback mb-2">
+          <div *ngIf="privacyAcceptance.errors.required">You must accept the Privacy Policy in
+            order to subscribe
+          </div>
+        </div>
+
+        <re-captcha [(ngModel)]="model.captcha" #captcha="ngModel" name="captcha" required class="mb-2"
+                    [ngClass]="{ 'is-invalid': subscriptionForm.submitted && captcha.invalid }"></re-captcha>
+        <div *ngIf="subscriptionForm.submitted && captcha.invalid" class="invalid-feedback mb-2">
+          <div *ngIf="captcha.errors.required">Captcha is required</div>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit">
+          <span *ngIf="sendingInProgress" class="spinner-border spinner-border-sm text-light" role="status"
+                aria-hidden="true"></span>
+          Submit
+        </button>
+      </form>
+    </section>
   </section>
 </div>
