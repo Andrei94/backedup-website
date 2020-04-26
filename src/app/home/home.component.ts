@@ -68,4 +68,8 @@ export class HomeComponent implements OnInit {
     this.formSubmitted = true;
     this.sendingInProgress = false;
   }
+
+  auth() {
+    window.location.href = 'http://localhost:4201/auth';
+  }
 }
