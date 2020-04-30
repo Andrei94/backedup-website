@@ -3,6 +3,7 @@ import {NotifySubscription} from './notify-subscription';
 import {HttpClient} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import {environment} from '../../environments/environment';
+import {GoogleAnalyticsService} from 'ngx-google-analytics';
 
 @Component({
   selector: 'app-home',
@@ -11,32 +12,16 @@ import {environment} from '../../environments/environment';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient) {
-  }
   model: NotifySubscription = new NotifySubscription();
   sendingInProgress: boolean;
   formSubmitted: boolean;
   messageSuccessfullySent: boolean;
 
-  private static random(): string {
-    return new Date().getTime() + '' + Math.floor(Math.random() * 10000000);
+  constructor(private httpClient: HttpClient,
+              private $gaService: GoogleAnalyticsService) {
   }
 
   ngOnInit() {
-    const acc = new Map();
-    for (let i = 0; i < 100000; i++) {
-      const message = HomeComponent.random();
-      if (acc.has(message.substr(message.length - 7))) {
-        acc.set(message.substr(message.length - 7), acc.get(message.substr(message.length - 7)) + 1);
-      } else {
-        acc.set(message.substr(message.length - 7), 1);
-      }
-    }
-    acc.forEach((value, key) => {
-      if (acc.get(key) > 1) {
-        console.log({key, value});
-      }
-    });
   }
 
   onSubmit(subscriptionForm: NgForm): void {
@@ -50,16 +35,21 @@ export class HomeComponent implements OnInit {
         } else {
           this.success();
         }
-      }, () => this.failure());
+      }, error => {
+        this.$gaService.exception('Failed to send message ' + error);
+        this.failure();
+      });
     }
   }
 
   private success() {
+    this.$gaService.event('pageLoaded', 'profilePage', this.model.email);
     this.messageSuccessfullySent = true;
     this.reset();
   }
 
   private failure() {
+    this.$gaService.exception('Failed to send message to ' + this.model.email);
     this.messageSuccessfullySent = false;
     this.reset();
   }
@@ -67,9 +57,5 @@ export class HomeComponent implements OnInit {
   private reset() {
     this.formSubmitted = true;
     this.sendingInProgress = false;
-  }
-
-  auth() {
-    window.location.href = 'http://localhost:4201/auth';
   }
 }

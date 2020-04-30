@@ -19,7 +19,7 @@
     "ssr:prod": "npm run build:prod && npm run server",
     "start:prerender": "npm run build:prerender & npm run serve:prerender",
     "serve:prerender": "node static.js",
-    "build:prerender": "npm run build:prod && node dist/prerender.js"
+    "build:prerender": "npm run build:prod && gzipper --verbose dist/browser && node dist/prerender.js"
   },
   "private": true,
   "dependencies": {

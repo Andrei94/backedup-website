@@ -1,167 +1,67 @@
 <router-outlet></router-outlet>
-<ul ngbNav class="navbar bg-primary justify-content-center fixed-top">
-  <li [ngbNavItem]="1">
-    <img src="../../assets/backedup-icon.png" alt="icon" title="Backedup"/>
-  </li>
-  <li [ngbNavItem]="2" class="nav-item text-light">
-    <a ngbNavLink routerLink="/contact" class="text-light">Contact Us</a>
-  </li>
-  <li *ngIf="false" [ngbNavItem]="3" class="nav-item text-light">
-    <a (click)="auth()" class="text-light" ngbNavLink routerLink="/auth">Login/Sign up</a>
-  </li>
-</ul>
-<br>
-<div class="container" style="margin-top: 56px">
-  <section class="row">
-    <h3 class="col-md-12 text-center slideFromBottomAnimation"> What brings <b class="d-block">you</b> here?</h3>
-    <div class="col-md-6">
-      <ul class="h5">
-        <li class="slideFromBottomAnimation">You have data that you want to keep safe</li>
-        <li class="slideFromBottomAnimation">You recently lost your data to some disk problem and are looking for
-          alternatives
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <ul class="h5">
-        <li class="slideFromBottomAnimation">You want more space on your computer</li>
-        <li class="slideFromBottomAnimation">You have games and want to keep them on your computer, but you want to
-          avoid buying an external disk that might break
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-12 h4 text-center">If you identify yourself with any of these points,
-      <b class="d-block">you’ve come to the right place</b></div>
-  </section>
-  <br>
+<app-navbar></app-navbar>
+<section class="bg-light">
   <section>
     <div>
-      <div>Here's a question for you:
-        <div class="h5">Why do you buy a subscription for a cloud storage or an external hard disk?</div>
-      </div>
-      <div>Because you want more space or you want to make sure that what you have is protected from damage right?</div>
-      <br>
-      <div>Here’s a thing: Cloud storage backs up your data, but the data that you have <b>in a specific location</b>,
-        not everything.
-      </div>
-      <div>You must move your files and folders to where the cloud storage folder is and this is not always possible.
-      </div>
-      <div>Don’t think this is true? Move some critical operating system files there and see what happens.</div>
-      <br>
-      <div>Having a cloud storage folder on your computer also takes up of your <b>own disk space</b>.</div>
-      <br>
-      <div>For example, if you have a 500GB hard disk and you want to buy a cloud storage of 1TB, you wouldn’t be
-        able to use it all, because you wouldn’t have the <b>necessary space to put everything there</b>.
-      </div>
-      <div>Now you might go with external hard disk drives but here’s the thing: they still break. Whether they are
-        external or internal, <b>they still break and you don’t know when that will happen</b>.
-      </div>
-      <div>So your best bet is to have multiple of them to make sure that when one of them breaks you still have your
-        data right?.
-      </div>
-      <div>You could say, "Well I have my internal hard disk and my external hard disk, so <b>I’m safe" and you’d be
-        right and perfectly
-        OK</b>.
-      </div>
-      <br>
-      <div>Now let me ask you this:
-        <div class="h5">What do you do to have your internal hdd in sync with your external hdd?</div>
-      </div>
-      <div>Periodic backups? Manual copy & paste of new files? That works if you <b>assume</b> that the
-        problem can’t happen in between backups, that the hard disk doesn’t break in between your last backup and the
-        time your new backup is performed.
-      </div>
-      <div>Remember Murphy's Law?</div>
-      <div>And that is the <b>very assumption</b> that made us create <b>Backedup</b>.</div>
+      <h2 class="h3 text-center"><b>Subscribe for notifications about the status of the application</b></h2>
+      <h4 class="h4 text-center"><b>Subscribe now and get a promo code for a 50% discount!!</b></h4>
     </div>
   </section>
-  <br>
-  <section>
-    <div>
-      Having your space as an external hard disk means that you can use the tool of your choice to work on files. You
-      see, we don’t believe in using <b>custom made collaboration tools</b> for very good reasons: they need to be <b>learnt
-      by you</b> in order to be used at their full potential and they are <b>a workaround solution to the lack of access
-      to your files </b> by the tools that you are <b>most comfortable with</b>. Having access to your files means you
-      can use what tool you are most comfortable with to work on your files.
-    </div>
-    <div>
-      Other solutions provide either file management or backups of systems. We provide them both. You have the option to
-      choose which files you want to backup and which files you want to use for your everyday work.
-    </div>
-  </section>
-  <br>
-  <section>
-    <div class="h5">How safe is Backedup?</div>
-    <div><b>All</b> data transmitted <b>from you to our servers</b> is encrypted using industry standard algorithms.
-      Once arrived, <b>multiple encrypted copies</b> of your files are stored on different servers.
-      Thus, if <b>one of our the servers crashes</b>, your data is safe and sound. Another server will replace the one
-      that crashed, thus <b>guaranteeing</b> that your data will not be lost.
-    </div>
-  </section>
-  <br>
-  <section>
-    <div>
-      <div class="h5 text-center"><b>Imagine managing all this with your own drives</b></div>
-    </div>
-  </section>
-  <section class="bg-light">
-    <section>
-      <div>
-        <h3 class="text-center"><b>Subscribe for notifications about the status of the application</b></h3>
-        <h4 class="text-center"><b>Subscribe now and get a promo code for a 50% discount!!</b></h4>
+  <section class="row mb-5">
+    <div class="col-md-4"></div>
+    <form #subscriptionForm="ngForm" (ngSubmit)="onSubmit(subscriptionForm)"
+          class="text-center border border-light col-md-4">
+      <div *ngIf="formSubmitted && subscriptionForm.valid" class="text-center border border-light">
+        <div *ngIf="messageSuccessfullySent" class="text-success font-weight-bold">
+          Subscribed! Thank you! You will receive the code upon release
+        </div>
+        <div *ngIf="!messageSuccessfullySent" class="text-danger font-weight-bold">
+          Failed to subscribe! Please try again
+        </div>
       </div>
-    </section>
-    <section class="row mb-5">
-      <div class="col-md-4"></div>
-      <form #subscriptionForm="ngForm" class="text-center border border-light col-md-4"
-            (ngSubmit)="onSubmit(subscriptionForm)">
-        <div *ngIf="formSubmitted && subscriptionForm.valid" class="text-center border border-light">
-          <div *ngIf="messageSuccessfullySent" class="text-success font-weight-bold">
-            Subscribed! Thank you!
-          </div>
-          <div *ngIf="!messageSuccessfullySent" class="text-danger font-weight-bold">
-            Failed to subscribe! Please try again
-          </div>
-        </div>
 
-        <label for="subscriptionEmail"></label>
-        <input type="email" id="subscriptionEmail" name="subscriptionEmail" class="form-control m-2 text-center"
-               placeholder="Email"
-               [(ngModel)]="model.email" required #subscriptionEmail="ngModel"
-               [ngClass]="{ 'is-invalid': subscriptionForm.submitted && subscriptionEmail.invalid }">
-        <div *ngIf="subscriptionForm.submitted && subscriptionEmail.invalid" class="invalid-feedback mb-2">
-          <p *ngIf="subscriptionEmail.errors.required">Email is required</p>
-          <p *ngIf="subscriptionEmail.errors.email">Must be a valid email address</p>
-        </div>
+      <label for="subscriptionEmail"></label>
+      <input #subscriptionEmail="ngModel" [(ngModel)]="model.email"
+             [ngClass]="{ 'is-invalid': subscriptionForm.submitted && subscriptionEmail.invalid }"
+             class="form-control m-2 text-center"
+             id="subscriptionEmail"
+             name="subscriptionEmail" placeholder="Email" required
+             type="email">
+      <div *ngIf="subscriptionForm.submitted && subscriptionEmail.invalid" class="invalid-feedback mb-2">
+        <p *ngIf="subscriptionEmail.errors.required">Email is required</p>
+        <p *ngIf="subscriptionEmail.errors.email">Must be a valid email address</p>
+      </div>
 
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" id="privacyAcceptance" name="privacyAcceptance"
-                 class="custom-control-input form-check-input"
-                 [(ngModel)]="model.privacyAccepted" required #privacyAcceptance="ngModel"
-                 [ngClass]="{ 'is-invalid': subscriptionForm.submitted && privacyAcceptance.invalid }">
-          <label class="custom-control-label form-check-label" for="privacyAcceptance">
-            I accept the
-            <a href="../../assets/privacyPolicy.html" rel="nofollow external" target="_blank">Privacy Policy</a>
-          </label>
+      <div class="custom-control custom-checkbox">
+        <input #privacyAcceptance="ngModel" [(ngModel)]="model.privacyAccepted"
+               [ngClass]="{ 'is-invalid': subscriptionForm.submitted && privacyAcceptance.invalid }"
+               class="custom-control-input form-check-input"
+               id="privacyAcceptance" name="privacyAcceptance" required
+               type="checkbox">
+        <label class="custom-control-label form-check-label" for="privacyAcceptance">
+          I accept the
+          <a href="../../assets/privacyPolicy.html" rel="nofollow external" target="_blank">Privacy Policy</a>
+        </label>
+      </div>
+      <div *ngIf="subscriptionForm.submitted && privacyAcceptance.invalid" class="invalid-feedback mb-2">
+        <div *ngIf="privacyAcceptance.errors.required">You must accept the Privacy Policy in
+          order to subscribe
         </div>
-        <div *ngIf="subscriptionForm.submitted && privacyAcceptance.invalid" class="invalid-feedback mb-2">
-          <div *ngIf="privacyAcceptance.errors.required">You must accept the Privacy Policy in
-            order to subscribe
-          </div>
-        </div>
+      </div>
 
-        <re-captcha [(ngModel)]="model.captcha" #captcha="ngModel" name="captcha" required class="mb-2"
-                    [ngClass]="{ 'is-invalid': subscriptionForm.submitted && captcha.invalid }"></re-captcha>
-        <div *ngIf="subscriptionForm.submitted && captcha.invalid" class="invalid-feedback mb-2">
-          <div *ngIf="captcha.errors.required">Captcha is required</div>
-        </div>
+      <re-captcha #captcha="ngModel" [(ngModel)]="model.captcha"
+                  [ngClass]="{ 'is-invalid': subscriptionForm.submitted && captcha.invalid }" class="mb-2"
+                  name="captcha"
+                  required></re-captcha>
+      <div *ngIf="subscriptionForm.submitted && captcha.invalid" class="invalid-feedback mb-2">
+        <div *ngIf="captcha.errors.required">Captcha is required</div>
+      </div>
 
-        <button class="btn btn-primary btn-block" type="submit">
+      <button class="btn btn-primary btn-block" type="submit">
           <span *ngIf="sendingInProgress" class="spinner-border spinner-border-sm text-light" role="status"
                 aria-hidden="true"></span>
-          Submit
-        </button>
-      </form>
-    </section>
+        Submit
+      </button>
+    </form>
   </section>
-</div>
+</section>

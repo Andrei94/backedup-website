@@ -13,12 +13,15 @@ import {CommonModule} from '@angular/common';
 import {TransferHttpCacheModule} from '@nguniversal/common';
 import {NgtUniversalModule} from '@ng-toolkit/universal';
 import {NgxGoogleAnalyticsModule} from 'ngx-google-analytics';
+import {NavbarComponent} from './navbar/navbar.component';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
@@ -36,7 +39,7 @@ import {NgxGoogleAnalyticsModule} from 'ngx-google-analytics';
   providers: [{
     provide: RECAPTCHA_SETTINGS,
     useValue: {
-      siteKey: '6LcUausUAAAAAEjFXFoqR0qnp9UvMiUoIsLGTra2',
+      siteKey: environment.siteKey,
     } as RecaptchaSettings,
   }],
   bootstrap: [AppComponent]
