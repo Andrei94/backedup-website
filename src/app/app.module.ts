@@ -28,7 +28,7 @@ import {environment} from '../environments/environment';
     CommonModule,
     TransferHttpCacheModule,
     NgtUniversalModule,
-    NgxGoogleAnalyticsModule.forRoot('UA-157507530-1')
+    NgxGoogleAnalyticsModule.forRoot(environment.trackingCode)
   ],
   providers: [{
     provide: RECAPTCHA_SETTINGS,
