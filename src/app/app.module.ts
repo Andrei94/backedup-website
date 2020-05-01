@@ -3,10 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {AppRoutingModule} from './app-routing.module';
-import {HomeComponent} from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
-import {ContactUsComponent} from './contact-us/contact-us.component';
 import {FormsModule} from '@angular/forms';
 import {RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings} from 'ng-recaptcha';
 import {CommonModule} from '@angular/common';
@@ -19,14 +16,11 @@ import {environment} from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ContactUsComponent,
     NavbarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     NgbModule,
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     RecaptchaModule,

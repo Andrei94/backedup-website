@@ -1,1 +1,67 @@
-<router-outlet></router-outlet>
+<app-navbar></app-navbar>
+<section class="bg-light">
+  <section>
+    <div>
+      <h2 class="h3 text-center"><b>Subscribe for notifications about the status of the application</b></h2>
+      <h4 class="h4 text-center"><b>Subscribe now and get a promo code for a 50% discount!!</b></h4>
+    </div>
+  </section>
+  <section class="row mb-5">
+    <div class="col-md-4"></div>
+    <form #subscriptionForm="ngForm" (ngSubmit)="onSubmit(subscriptionForm)"
+          class="text-center border border-light col-md-4">
+      <div *ngIf="formSubmitted && subscriptionForm.valid" class="text-center border border-light">
+        <div *ngIf="messageSuccessfullySent" class="text-success font-weight-bold">
+          Subscribed! Thank you! You will receive the code upon release
+        </div>
+        <div *ngIf="!messageSuccessfullySent" class="text-danger font-weight-bold">
+          Failed to subscribe! Please try again
+        </div>
+      </div>
+
+      <label for="subscriptionEmail"></label>
+      <input #subscriptionEmail="ngModel" [(ngModel)]="model.email"
+             [ngClass]="{ 'is-invalid': subscriptionForm.submitted && subscriptionEmail.invalid }"
+             class="form-control m-2 text-center"
+             id="subscriptionEmail"
+             name="subscriptionEmail" placeholder="Email" required
+             type="email">
+      <div *ngIf="subscriptionForm.submitted && subscriptionEmail.invalid" class="invalid-feedback mb-2">
+        <p *ngIf="subscriptionEmail.errors.required">Email is required</p>
+        <p *ngIf="subscriptionEmail.errors.email">Must be a valid email address</p>
+      </div>
+
+      <div class="custom-control custom-checkbox">
+        <input #privacyAcceptance="ngModel" [(ngModel)]="model.privacyAccepted"
+               [ngClass]="{ 'is-invalid': subscriptionForm.submitted && privacyAcceptance.invalid }"
+               class="custom-control-input form-check-input"
+               id="privacyAcceptance" name="privacyAcceptance" required
+               type="checkbox">
+        <label class="custom-control-label form-check-label" for="privacyAcceptance">
+          I accept the
+          <a href="../assets/privacyPolicy.html" rel="nofollow external" target="_blank">Privacy Policy</a>
+        </label>
+      </div>
+      <div *ngIf="subscriptionForm.submitted && privacyAcceptance.invalid" class="invalid-feedback mb-2">
+        <div *ngIf="privacyAcceptance.errors.required">You must accept the Privacy Policy in
+          order to subscribe
+        </div>
+      </div>
+
+      <re-captcha #captcha="ngModel" [(ngModel)]="model.captcha"
+                  [ngClass]="{ 'is-invalid': subscriptionForm.submitted && captcha.invalid }" class="mb-2"
+                  name="captcha"
+                  required></re-captcha>
+      <div *ngIf="subscriptionForm.submitted && captcha.invalid" class="invalid-feedback mb-2">
+        <div *ngIf="captcha.errors.required">Captcha is required</div>
+      </div>
+
+      <button class="btn btn-primary btn-block" type="submit">
+          <span *ngIf="sendingInProgress" aria-hidden="true" class="spinner-border spinner-border-sm text-light"
+                role="status"></span>
+        Submit
+      </button>
+    </form>
+  </section>
+</section>
+

@@ -12,6 +12,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  contact() {
+    window.location.href = 'http://localhost:4201/contact';
+  }
+
   auth() {
     window.location.href = 'http://localhost:4201/auth';
   }

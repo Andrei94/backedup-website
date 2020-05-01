@@ -1,12 +1,12 @@
 <ul class="navbar bg-primary justify-content-center fixed-top" ngbNav>
   <li [ngbNavItem]="1">
-    <img alt="backedup logo" src="../../assets/backedup-icon.png" title="Backedup"/>
+    <img alt="backedup logo" src="../../assets/backedup-icon.png"/>
   </li>
-  <li [ngbNavItem]="2" class="nav-item text-light">
-    <a class="text-light" ngbNavLink routerLink="/contact">Contact Us</a>
+  <li *ngIf="false" [ngbNavItem]="2" class="nav-item text-light">
+    <a (click)="contact()" class="text-light" href="/contact" ngbNavLink>Contact Us</a>
   </li>
   <li *ngIf="false" [ngbNavItem]="3" class="nav-item text-light">
-    <a (click)="auth()" class="text-light" ngbNavLink routerLink="/auth">Login/Sign up</a>
+    <a (click)="auth()" class="text-light" href="/auth" ngbNavLink>Login/Sign up</a>
   </li>
 </ul>
 <br>
