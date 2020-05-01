@@ -24,7 +24,7 @@
     "start:prerender": "npm run build:prerender & npm run serve:prerender",
     "serve:prerender": "node static.js",
     "build:prerender": "npm run build:prod && gzipper --verbose dist/browser && node dist/prerender.js",
-    "build:prerender:awsprod": "npm run build:awsprod && gzipper --verbose dist/browser && node dist/prerender.js"
+    "build:prerender:awsprod": "npm run build:awsprod && node dist/prerender.js"
   },
   "private": true,
   "dependencies": {
