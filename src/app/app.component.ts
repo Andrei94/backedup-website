@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.$gaService.event('pageLoaded', 'landingPage');
   }
 
   onSubmit(subscriptionForm: NgForm): void {
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit {
   }
 
   private success() {
-    this.$gaService.event('pageLoaded', 'profilePage', this.model.email);
+    this.$gaService.event('emailSent', 'landingPage', this.model.email);
     this.messageSuccessfullySent = true;
     this.reset();
   }
