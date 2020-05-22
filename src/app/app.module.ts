@@ -12,6 +12,23 @@ import {NgtUniversalModule} from '@ng-toolkit/universal';
 import {NgxGoogleAnalyticsModule} from 'ngx-google-analytics';
 import {NavbarComponent} from './navbar/navbar.component';
 import {environment} from '../environments/environment';
+import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
+
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: 'localhost'
+  },
+  palette: {
+    popup: {
+      background: '#00496f'
+    },
+    button: {
+      background: '#00496f'
+    }
+  },
+  theme: 'edgeless',
+  type: 'opt-out'
+};
 
 @NgModule({
   declarations: [
@@ -28,7 +45,8 @@ import {environment} from '../environments/environment';
     CommonModule,
     TransferHttpCacheModule,
     NgtUniversalModule,
-    NgxGoogleAnalyticsModule.forRoot(environment.trackingCode)
+    NgxGoogleAnalyticsModule.forRoot(environment.trackingCode),
+    NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [{
     provide: RECAPTCHA_SETTINGS,

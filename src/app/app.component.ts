@@ -1,27 +1,42 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NotifySubscription} from './notify-subscription';
 import {HttpClient} from '@angular/common/http';
 import {GoogleAnalyticsService} from 'ngx-google-analytics';
 import {NgForm} from '@angular/forms';
 import {environment} from '../environments/environment';
+import {Subscription} from 'rxjs';
+import {NgcCookieConsentService, NgcStatusChangeEvent} from 'ngx-cookieconsent';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   model: NotifySubscription = new NotifySubscription();
   sendingInProgress: boolean;
   formSubmitted: boolean;
   messageSuccessfullySent: boolean;
+  consentGiven = true;
+
+  private popupOpenSubscription: Subscription;
+  private popupCloseSubscription: Subscription;
+  private initializeSubscription: Subscription;
+  private statusChangeSubscription: Subscription;
+  private revokeChoiceSubscription: Subscription;
+  private noCookieLawSubscription: Subscription;
 
   constructor(private httpClient: HttpClient,
-              private $gaService: GoogleAnalyticsService) {
+              private $gaService: GoogleAnalyticsService,
+              private ccService: NgcCookieConsentService) {
   }
 
   ngOnInit() {
     this.$gaService.event('pageLoaded', 'landingPage');
+    this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
+      (event: NgcStatusChangeEvent) => {
+        this.consentGiven = event.status === 'allow';
+      });
   }
 
   onSubmit(subscriptionForm: NgForm): void {
@@ -36,26 +51,41 @@ export class AppComponent implements OnInit {
           this.success();
         }
       }, error => {
-        this.$gaService.exception('Failed to send message ' + error);
+        if (this.consentGiven) {
+          this.$gaService.exception('Failed to send message ' + error);
+        }
         this.failure();
       });
     }
   }
 
-  private success() {
-    this.$gaService.event('emailSent', 'landingPage', this.model.email);
-    this.messageSuccessfullySent = true;
-    this.reset();
+  ngOnDestroy() {
+    this.popupOpenSubscription.unsubscribe();
+    this.popupCloseSubscription.unsubscribe();
+    this.initializeSubscription.unsubscribe();
+    this.statusChangeSubscription.unsubscribe();
+    this.revokeChoiceSubscription.unsubscribe();
+    this.noCookieLawSubscription.unsubscribe();
   }
 
-  private failure() {
-    this.$gaService.exception('Failed to send message to ' + this.model.email);
-    this.messageSuccessfullySent = false;
+  private success() {
+    if (this.consentGiven) {
+      this.$gaService.event('emailSent', 'landingPage', this.model.email);
+    }
+    this.messageSuccessfullySent = true;
     this.reset();
   }
 
   private reset() {
     this.formSubmitted = true;
     this.sendingInProgress = false;
+  }
+
+  private failure() {
+    if (this.consentGiven) {
+      this.$gaService.exception('Failed to send message to ' + this.model.email);
+    }
+    this.messageSuccessfullySent = false;
+    this.reset();
   }
 }
