@@ -17,14 +17,9 @@ export class AppComponent implements OnInit, OnDestroy {
   sendingInProgress: boolean;
   formSubmitted: boolean;
   messageSuccessfullySent: boolean;
-  consentGiven = true;
+  private consentGiven = true;
 
-  private popupOpenSubscription: Subscription;
-  private popupCloseSubscription: Subscription;
-  private initializeSubscription: Subscription;
   private statusChangeSubscription: Subscription;
-  private revokeChoiceSubscription: Subscription;
-  private noCookieLawSubscription: Subscription;
 
   constructor(private httpClient: HttpClient,
               private $gaService: GoogleAnalyticsService,
@@ -60,12 +55,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.popupOpenSubscription.unsubscribe();
-    this.popupCloseSubscription.unsubscribe();
-    this.initializeSubscription.unsubscribe();
     this.statusChangeSubscription.unsubscribe();
-    this.revokeChoiceSubscription.unsubscribe();
-    this.noCookieLawSubscription.unsubscribe();
   }
 
   private success() {

@@ -16,7 +16,7 @@ import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent'
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: 'localhost'
+    domain: environment.domain
   },
   palette: {
     popup: {
